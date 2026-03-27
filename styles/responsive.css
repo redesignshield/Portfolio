@@ -1,0 +1,155 @@
+/* 
+  Redesign Shield - Responsive Styles
+  Moved from style.css for better maintainability
+*/
+
+/* -----------------------------------------------------------
+   Tablet & Mobile (< 900px)
+----------------------------------------------------------- */
+@media (max-width: 900px) {
+  /* Grid & Layout Adjustments */
+  .two-col, .three-col { grid-template-columns: 1fr; }
+  .header__inner { grid-template-columns: auto 1fr auto; }
+  
+  /* Navigation */
+  .nav__menu { 
+    position: fixed; 
+    inset: 72px 0 auto 0; 
+    flex-direction: column; 
+    background: var(--bg); 
+    padding: var(--space-3); 
+    border-top: 1px solid var(--line); 
+    transform: translateY(-120%); 
+    transition: transform .35s ease; 
+  }
+  .nav__toggle { display: flex; }
+  .nav--open .nav__menu { transform: translateY(0); }
+
+  /* About Section */
+  .about__visual { min-height: 340px; }
+  .about__stats { grid-template-columns: 1fr; }
+  .about__stats .kpi { min-width: 0; }
+
+  /* Testimonials */
+  .testimonial__carousel {
+    padding: 0 var(--space-2);
+  }
+  .testimonial__nav {
+    width: 40px;
+    height: 40px;
+  }
+  .testimonial__nav--prev {
+    left: var(--space-2);
+  }
+  .testimonial__nav--next {
+    right: var(--space-2);
+  }
+  .testimonial {
+    padding: var(--space-4);
+  }
+  .testimonial__quote {
+    font-size: 36px;
+  }
+  .testimonial-marquee {
+  animation: marquee-scroll 10s linear infinite;
+  }
+
+  /* Footer */
+  .footer__grid { grid-template-columns: 1fr; }
+
+  /* Social Bar - Repositioned to bottom row */
+  .socialbar { 
+    top: auto; 
+    left: 50%; 
+    bottom: 12px; /* Bottom row */
+    transform: translateX(-50%); 
+    width: auto; 
+    z-index: 100;
+  }
+  .socialbar ul { 
+    grid-auto-flow: column; 
+    grid-template-columns: repeat(5, 40px); 
+    gap: 8px; 
+    background: color-mix(in oklab, var(--bg) 90%, var(--card));
+    padding: 6px;
+    border-radius: 50px;
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-2);
+  }
+
+  /* Compact Social Icons */
+  .social, .social:hover, .social:focus-visible { 
+    width: 36px; 
+    height: 36px; 
+    justify-content: center; 
+    padding-left: 0; 
+    transform: none; 
+    border-radius: 50%; 
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    overflow: visible; 
+  }
+  
+  /* Tooltip Name Above Icon */
+  .social__name {
+    position: absolute;
+    top: -34px;
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    background: var(--card);
+    padding: 3px 8px;
+    border-radius: 4px;
+    box-shadow: var(--shadow-1);
+    border: 1px solid var(--line);
+    opacity: 0;
+    visibility: hidden;
+    font-size: 0.7rem;
+    max-width: none;
+    margin: 0;
+    pointer-events: none;
+    transition: opacity .2s ease, transform .2s ease, visibility .2s;
+  }
+  
+  .social:hover .social__name, .social:focus-visible .social__name {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* Floating Buttons - Moved UP to avoid Social Bar */
+  .fab {
+    bottom: 74px; /* Move above social bar (12px + ~50px height) */
+    width: 44px; /* Smaller on mobile */
+    height: 44px;
+    z-index: 90;
+  }
+  .fab--drawer {
+    bottom: 130px; /* Position drawer button above drawer content */
+  }
+}
+
+/* -----------------------------------------------------------
+   Contact Form Adjustment (> 720px)
+----------------------------------------------------------- */
+@media (min-width: 720px) { 
+  .contact__form .btn { justify-self: end; } 
+}
+
+/* -----------------------------------------------------------
+   Small Mobile (< 720px)
+----------------------------------------------------------- */
+@media (max-width: 720px) {
+  .hero__grid { grid-template-columns: 1fr; }
+  .hero__right { order: -1; aspect-ratio: auto; min-height: 260px; }
+}
+
+/* -----------------------------------------------------------
+   Reduced Motion
+----------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .btn, .social, .hero__tab, .reveal, .hero__lottie, .txt-rotate { 
+    transition: none !important; 
+    animation: none !important; 
+  }
+}
